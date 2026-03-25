@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ImgZone - 免费在线图片工具箱</title>
+  <meta name="description" content="完全免费的在线图片工具：压缩、调整大小、格式转换、裁剪、添加水印，无需注册即用。">
+  <meta name="keywords" content="图片压缩,图片调整大小,图片格式转换,图片裁剪,水印,免费在线工具">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="ImgZone - 免费在线图片工具箱">
+  <meta property="og:description" content="完全免费的在线图片工具，无需注册，文件永不离开你的设备">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://taozhilong.github.io/imgzone/">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{--p:#8b5cf6;--pd:#7c3aed;--bg:#f5f3ff;--c:#fff;--t:#1e1b4b;--tl:#6b7280;--b:#e5e7eb;--r:12px}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--t);line-height:1.6}
+    header{background:var(--c);border-bottom:1px solid var(--b);padding:14px 0;position:sticky;top:0;z-index:100}
+    .hi{max-width:1200px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between}
+    .logo{font-size:22px;font-weight:800;color:var(--p);text-decoration:none}
+    nav{display:flex;gap:4px}
+    nav a{color:var(--tl);text-decoration:none;font-size:14px;padding:6px 12px;border-radius:8px;transition:all .2s}
+    nav a:hover{background:var(--bg);color:var(--t)}
+    .lang-btn{background:none;border:1px solid var(--b);cursor:pointer;font-size:13px;padding:6px 10px;border-radius:8px;color:var(--tl);margin-left:4px}
+    .lang-btn:hover{background:var(--bg)}
+    .hero{text-align:center;padding:48px 20px 32px;max-width:800px;margin:0 auto}
+    .hero h1{font-size:38px;font-weight:800;margin-bottom:12px;color:var(--t)}
+    .hero p{font-size:17px;color:var(--tl);margin-bottom:20px}
+    .tag{display:inline-flex;align-items:center;gap:6px;background:#ede9fe;color:#7c3aed;padding:6px 14px;border-radius:100px;font-size:13px;font-weight:500}
+    .ts{max-width:1200px;margin:0 auto;padding:10px 20px 60px}
+    .cat{margin-bottom:40px}
+    .ct{font-size:13px;font-weight:600;color:var(--tl);text-transform:uppercase;letter-spacing:1px;margin-bottom:14px;padding-left:4px}
+    .ct span{color:var(--p);border-bottom:2px solid var(--p);padding-bottom:8px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+    .tc{background:var(--c);border:1px solid var(--b);border-radius:var(--r);padding:20px;cursor:pointer;transition:all .2s;text-decoration:none;color:inherit;display:block}
+    .tc:hover{border-color:var(--p);box-shadow:0 4px 12px rgba(139,92,246,.1);transform:translateY(-2px)}
+    .ti{width:44px;height:44px;background:#ede9fe;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:14px}
+    .tc h3{font-size:15px;font-weight:600;margin-bottom:6px}
+    .tc p{font-size:13px;color:var(--tl);line-height:1.5}
+    #tv{display:none;max-width:680px;margin:0 auto;padding:36px 20px}
+    #tv.act{display:block}
+    .bk{display:inline-flex;align-items:center;gap:6px;color:var(--tl);text-decoration:none;font-size:14px;margin-bottom:20px;cursor:pointer;padding:6px 12px;border-radius:8px}
+    .bk:hover{background:var(--c)}
+    .th{margin-bottom:24px}
+    .th h2{font-size:26px;font-weight:700;margin-bottom:6px}
+    .th p{color:var(--tl);font-size:14px}
+    .dz{border:2px dashed var(--b);border-radius:var(--r);padding:50px 20px;text-align:center;transition:all .2s;cursor:pointer;background:var(--c);margin-bottom:16px}
+    .dz:hover,.dz.dg{border-color:var(--p);background:#ede9fe}
+    .dzi{font-size:44px;margin-bottom:12px}
+    .dz h3{font-size:17px;margin-bottom:6px}
+    .dz p{color:var(--tl);font-size:13px}
+    .dz input{display:none}
+    .fl{background:var(--c);border:1px solid var(--b);border-radius:var(--r);margin-bottom:16px;overflow:hidden;display:none}
+    .fl.act{display:block}
+    .fi{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid var(--b);font-size:14px}
+    .fi:last-child{border-bottom:none}
+    .fil{display:flex;align-items:center;gap:8px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .fs{color:var(--tl);font-size:12px}
+    .rb{background:none;border:none;cursor:pointer;color:var(--tl);padding:4px 8px;border-radius:6px}
+    .rb:hover{background:#fee2e2;color:#ef4444}
+    .op{background:var(--c);border:1px solid var(--b);border-radius:var(--r);padding:16px;margin-bottom:16px}
+    .op h4{font-size:13px;font-weight:600;margin-bottom:10px}
+    .or{display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap}
+    .or:last-child{margin-bottom:0}
+    .or label{font-size:13px;cursor:pointer}
+    .or input[type=text],.or input[type=number],.or select{ padding:6px 10px;border:1px solid var(--b);border-radius:8px;font-size:13px;background:var(--bg)}
+    input.wid{width:100%}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 22px;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;border:none;transition:all .2s;width:100%;margin-bottom:10px}
+    .btn-p{background:var(--p);color:#fff}
+    .btn-p:hover{background:var(--pd)}
+    .btn-p:disabled{background:#94a3b8;cursor:not-allowed}
+    .btn-s{background:var(--c);color:var(--t);border:1px solid var(--b)}
+    .btn-s:hover{background:var(--bg)}
+    .btng{display:flex;gap:10px}
+    .btng .btn{width:auto;flex:1}
+    .pb{width:100%;height:5px;background:var(--b);border-radius:100px;overflow:hidden;margin-bottom:14px;display:none}
+    .pb.act{display:block}
+    .pf{height:100%;background:var(--p);border-radius:100px;transition:width .3s;width:0%}
+    .rbx{background:#dcfce7;border:1px solid #86efac;border-radius:var(--r);padding:20px;text-align:center;display:none;margin-bottom:14px}
+    .rbx.act{display:block}
+    .rbx h3{color:#166534;margin-bottom:6px;font-size:16px}
+    .rbx a{display:inline-flex;align-items:center;gap:6px;margin-top:10px;color:var(--p);text-decoration:none;font-weight:600;font-size:14px}
+    footer{text-align:center;padding:36px 20px;color:var(--tl);font-size:13px;border-top:1px solid var(--b);margin-top:40px}
+    @media(max-width:640px){.hero h1{font-size:26px}.grid{grid-template-columns:1fr 1fr}}
+  </style>
+</head>
+<body>
+<header><div class="hi">
+  <a href="#" class="logo" onclick="showHome();return false">ImgZone</a>
+  <nav>
+    <a href="https://taozhilong.github.io/pdfzone/" target="_blank">PDF工具</a>
+    <a href="https://taozhilong.github.io/codezone/" target="_blank">开发工具</a>
+    <button class="lang-btn" onclick="toggleLang()" id="langBtn">🌐 EN</button>
+  </nav>
+</div></header>
+
+<div id="home-view">
+  <div class="hero">
+    <div class="tag" data-i18n="hero_tag">完全免费 · 无需注册 · 隐私安全</div>
+    <h1 data-i18n="hero_title">免费在线图片工具箱</h1>
+    <p data-i18n="hero_desc">压缩、调整大小、格式转换、裁剪、加水印<br>所有操作在浏览器完成，文件永不离开你的设备</p>
+  </div>
+  <div class="ts">
+    <div class="cat">
+      <div class="ct"><span data-i18n="cat_main">图片处理</span></div>
+      <div class="grid">
+        <div class="tc" onclick="openTool('compress')"><div class="ti">🗜️</div><h3 data-i18n="compress_title">图片压缩</h3><p data-i18n="compress_desc">压缩 JPG/PNG/WebP 图片体积</p></div>
+        <div class="tc" onclick="openTool('resize')"><div class="ti">📐</div><h3 data-i18n="resize_title">调整大小</h3><p data-i18n="resize_desc">修改图片尺寸和分辨率</p></div>
+        <div class="tc" onclick="openTool('convert')"><div class="ti">🔄</div><h3 data-i18n="convert_title">格式转换</h3><p data-i18n="convert_desc">JPG/PNG/WebP/GIF 互转</p></div>
+        <div class="tc" onclick="openTool('crop')"><div class="ti">✂️</div><h3 data-i18n="crop_title">裁剪图片</h3><p data-i18n="crop_desc">自定义裁剪图片区域</p></div>
+        <div class="tc" onclick="openTool('watermark')"><div class="ti">💧</div><h3 data-i18n="watermark_title">添加水印</h3><p data-i18n="watermark_desc">添加文字或图片水印</p></div>
+        <div class="tc" onclick="openTool('rotate')"><div class="ti">🔄</div><h3 data-i18n="rotate_title">旋转/翻转</h3><p data-i18n="rotate_desc">旋转或水平/垂直翻转</p></div>
+        <div class="tc" onclick="openTool('brightness')"><div class="ti">☀️</div><h3 data-i18n="brightness_title">调整亮度</h3><p data-i18n="brightness_desc">调整图片亮度、对比度</p></div>
+        <div class="tc" onclick="openTool('gif')"><div class="ti">🎞</div><h3 data-i18n="gif_title">GIF 制作</h3><p data-i18n="gif_desc">多张图片合成为 GIF</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="tv">
+  <a class="bk" onclick="showHome();return false">← 返回</a>
+  <div class="th"><h2 id="tt">工具</h2><p id="td">描述</p></div>
+  <div class="dz" id="dz" onclick="document.getElementById('fi').click()">
+    <div class="dzi" id="dzi">📁</div>
+    <h3 id="dzt">点击或拖拽文件到这里</h3>
+    <p id="dzh">支持 JPG/PNG/WebP/GIF</p>
+    <input type="file" id="fi" accept="image/*">
+  </div>
+  <div class="fl" id="fl"></div>
+  <div class="op" id="op"></div>
+  <div class="pb" id="pb"><div class="pf" id="pf"></div></div>
+  <div class="rbx" id="rbx"><h3>✅ 完成</h3><a id="dl" href="#" download>⬇️ 下载</a></div>
+  <button class="btn btn-p" id="pbBtn" onclick="processTool()" disabled>开始处理</button>
+  <button class="btn btn-s" id="clBtn" onclick="clearFiles()" style="display:none">清空</button>
+</div>
+
+<footer><p>© 2026 ImgZone · <a href="https://taozhilong.github.io/pdfzone/">PDF工具</a> · <a href="https://taozhilong.github.io/codezone/">开发工具</a></p></footer>
+
+<script>
+const T={
+  compress:{title:'图片压缩',desc:'压缩图片体积',hint:'选择图片',icon:'🗜️'},
+  resize:{title:'调整大小',desc:'修改尺寸',hint:'选择图片',icon:'📐'},
+  convert:{title:'格式转换',desc:'转换图片格式',hint:'选择图片',icon:'🔄'},
+  crop:{title:'裁剪图片',desc:'自定义裁剪',hint:'选择图片',icon:'✂️'},
+  watermark:{title:'添加水印',desc:'添加水印',hint:'选择图片',icon:'💧'},
+  rotate:{title:'旋转/翻转',desc:'旋转或翻转',hint:'选择图片',icon:'🔄'},
+  brightness:{title:'调整亮度',desc:'调整亮度对比度',hint:'选择图片',icon:'☀️'},
+  gif:{title:'GIF 制作',desc:'合成为 GIF',hint:'选择多张图片',icon:'🎞️'}
+};
+
+let ct=null,files=[],canvas=document.createElement('canvas');
+
+function showHome(){document.getElementById('home-view').style.display='block';document.getElementById('tv').classList.remove('act');files=[];}
+function openTool(id){
+  ct=id;const t=T[id];
+  document.getElementById('home-view').style.display='none';
+  document.getElementById('tv').classList.add('act');
+  document.getElementById('tt').textContent=t.title;
+  document.getElementById('td').textContent=t.desc;
+  document.getElementById('dzi').textContent=t.icon;
+  document.getElementById('dzt').textContent=t.title+' - 上传文件';
+  document.getElementById('dzh').textContent=t.hint;
+  const inp=document.getElementById('fi');
+  inp.accept='image/*';
+  inp.multiple=id==='gif'||id==='watermark';
+  files=[];updateFileList();buildOptions();hideResult();
+}
+
+function buildOptions(){
+  const p=document.getElementById('op');let h='';
+  switch(ct){
+    case 'compress':
+      h=`<h4>压缩质量</h4>
+        <div class="or"><input type="range" id="q" min="10" max="100" value="80" style="width:70%" oninput="document.getElementById('ql').textContent=this.value+'%'"><span id="ql" style="font-size:13px">80%</span></div>
+        <div class="or"><select id="fmt" class="wid"><option value="jpeg">JPG（体积小）</option><option value="png">PNG（质量高）</option><option value="webp">WebP（推荐）</option></select></div>`;
+      break;
+    case 'resize':
+      h=`<h4>新尺寸</h4>
+        <div class="or"><label>宽度：</label><input type="number" id="nw" placeholder="像素" style="width:70px"><span style="color:var(--tl);font-size:13px">px</span></div>
+        <div class="or"><label>高度：</label><input type="number" id="nh" placeholder="自动" style="width:70px"><span style="color:var(--tl);font-size:13px">px</span></div>
+        <div class="or"><label><input type="checkbox" id="kr" checked>保持宽高比</label></div>`;
+      break;
+    case 'convert':
+      h=`<h4>输出格式</h4><div class="or"><select id="cfmt" class="wid"><option value="jpeg">JPG</option><option value="png">PNG</option><option value="webp">WebP</option><option value="gif">GIF</option></select></div>`;
+      break;
+    case 'crop':
+      h=`<h4>裁剪区域</h4>
+        <div class="or"><label>X：</label><input type="number" id="cx" value="0" style="width:60px"><label style="margin-left:10px">Y：</label><input type="number" id="cy" value="0" style="width:60px"></div>
+        <div class="or"><label>宽：</label><input type="number" id="cw" placeholder="全宽" style="width:60px"><label style="margin-left:10px">高：</label><input type="number" id="ch" placeholder="全高" style="width:60px"></div>`;
+      break;
+    case 'watermark':
+      h=`<h4>水印设置</h4>
+        <div class="or"><input type="text" id="wtext" class="wid" placeholder="水印文字，如 © 2026"></div>
+        <div class="or"><label>大小：</label><input type="number" id="wsize" value="24" style="width:50px"><span style="font-size:13px">px</span></div>
+        <div class="or"><label>透明度：</label><input type="range" id="walpha" min="10" max="100" value="50" style="width:70%" oninput="document.getElementById('walphal').textContent=this.value+'%'"><span id="walphal" style="font-size:13px">50%</span></div>
+        <div class="or"><label><input type="checkbox" id="wpos" checked>右下角</label></div>`;
+      break;
+    case 'rotate':
+      h=`<h4>旋转/翻转</h4>
+        <div class="or"><select id="rot" class="wid"><option value="0">不旋转</option><option value="90">90° 顺时针</option><option value="180">180°</option><option value="270">270° 逆时针</option></select></div>
+        <div class="or"><label><input type="checkbox" id="fh">水平翻转</label><label style="margin-left:20px"><input type="checkbox" id="fv">垂直翻转</label></div>`;
+      break;
+    case 'brightness':
+      h=`<h4>调整</h4>
+        <div class="or"><label>亮度：</label><input type="range" id="br" min="-100" max="100" value="0" style="width:60%" oninput="document.getElementById('brl').textContent=this.value"><span id="brl" style="font-size:13px;width:20px">0</span></div>
+        <div class="or"><label>对比度：</label><input type="range" id="con" min="-100" max="100" value="0" style="width:60%" oninput="document.getElementById('conl').textContent=this.value"><span id="conl" style="font-size:13px;width:20px">0</span></div>`;
+      break;
+  }
+  p.innerHTML=h;
+}
+
+const dz=document.getElementById('dz');
+dz.addEventListener('dragover',e=>{e.preventDefault();dz.classList.add('dg');});
+dz.addEventListener('dragleave',()=>dz.classList.remove('dg'));
+dz.addEventListener('drop',e=>{e.preventDefault();dz.classList.remove('dg');handleFiles(e.dataTransfer.files);});
+document.getElementById('fi').addEventListener('change',e=>handleFiles(e.target.files));
+
+function handleFiles(fs){
+  for(let f of fs){
+    if(files.length>=20)break;
+    files.push(f);
+  }
+  updateFileList();
+  document.getElementById('pbBtn').disabled=files.length===0;
+}
+
+function updateFileList(){
+  const fl=document.getElementById('fl');
+  if(files.length===0){fl.classList.remove('act');return;}
+  fl.classList.add('act');
+  fl.innerHTML=files.map((f,i)=>`<div class="fi"><div class="fil"><span>📄</span> ${esc(f.name)}</div><div><span class="fs">${fs2(f.size)}</span><button class="rb" onclick="rm(${i})">✕</button></div></div>`).join('');
+}
+function rm(i){files.splice(i,1);updateFileList();document.getElementById('pbBtn').disabled=files.length===0;}
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function fs2(b){if(b<1024)return b+' B';if(b<1048576)return(b/1024).toFixed(1)+' KB';return(b/1048576).toFixed(1)+' MB';}
+function hideResult(){document.getElementById('rbx').classList.remove('act');}
+function setProgress(p){document.getElementById('pb').classList.add('act');document.getElementById('pf').style.width=p+'%';}
+function resetProgress(){document.getElementById('pb').classList.remove('act');document.getElementById('pf').style.width='0%';}
+
+async function processTool(){
+  hideResult();
+  const btn=document.getElementById('pbBtn');
+  btn.disabled=true;btn.textContent='处理中...';
+  setProgress(10);
+  try{
+    if(ct==='compress'){
+      const q=parseInt(document.getElementById('q').value)/100;
+      const fmt=document.getElementById('fmt').value;
+      const img=await loadImg(files[0]);
+      canvas.width=img.width;canvas.height=img.height;
+      canvas.getContext('2d').drawImage(img,0,0);
+      const dataUrl=canvas.toDataURL('image/'+fmt,q);
+      const ext=fmt==='jpeg'?'jpg':fmt;
+      showResult(files[0].name.replace(/\.[^.]+$/,'.'+ext),dataUrl);
+    } else if(ct==='resize'){
+      const nw=parseInt(document.getElementById('nw').value)||img.width;
+      const nh=parseInt(document.getElementById('nh').value)||img.height;
+      const img=await loadImg(files[0]);
+      canvas.width=nw;canvas.height=nh;
+      canvas.getContext('2d').drawImage(img,0,0,nw,nh);
+      showResult('resized_'+files[0].name,canvas.toDataURL('image/png'));
+    } else if(ct==='convert'){
+      const fmt=document.getElementById('cfmt').value;
+      const img=await loadImg(files[0]);
+      canvas.width=img.width;canvas.height=img.height;
+      canvas.getContext('2d').drawImage(img,0,0);
+      const dataUrl=canvas.toDataURL('image/'+(fmt==='jpeg'?'jpg':fmt));
+      showResult(files[0].name.replace(/\.[^.]+$/,'.'+fmt),dataUrl);
+    } else if(ct==='gif'){
+      const delay=500;
+      const imgs=[];
+      for(const f of files)imgs.push(await loadImg(f));
+      const w=Math.min(...imgs.map(i=>i.width)),h=Math.min(...imgs.map(i=>i.height));
+      canvas.width=w;canvas.height=h;
+      const gif=await encodeGif(imgs,w,h,delay);
+      showResult('animation.gif',URL.createObjectURL(new Blob([gif],{type:'image/gif'})));
+    }
+    setProgress(100);
+  }catch(e){alert('错误: '+e.message);}
+  finally{btn.disabled=false;btn.textContent='开始处理';resetProgress();}
+}
+
+function loadImg(file){return new Promise((r,e)=>{const i=new Image();i.onload=()=>r(i);i.onerror=e;i.src=URL.createObjectURL(file);});}
+
+async function encodeGif(imgs,w,h,delay){
+  const buf=new ArrayBuffer(16+w*h*3);
+  const v=new Uint8Array(buf);
+  v[0]=0x47;v[1]=0x49;v[2]=0x46;v[3]=0x38;v[4]=0x39;v[5]=0x61;
+  v[6]=w&0xff;v[7]=(w>>8)&0xff;v[8]=h&0xff;v[9]=(h>>8)&0xff;
+  v[10]=0xf7;v[11]=0x00;v[12]=0x00;
+  let off=16;
+  v[off++]=0x21;v[off++]=0xff;v[off++]=0x0b;
+  v[off++]=0x4e;v[off++]=0x45;v[off++]=0x54;v[off++]=0x53;v[off++]=0x43;v[off++]=0x41;v[off++]=0x50;v[off++]=0x45;v[off++]=0x32;v[off++]=0x2e;v[off++]=0x30;v[off++]=0x03;v[off++]=0x01;v[off++]=0x00;v[off++]=0x00;
+  for(let i=0;i<imgs.length;i++){
+    canvas.width=w;canvas.height=h;
+    canvas.getContext('2d').drawImage(imgs[i],0,0,w,h);
+    const d=canvas.getContext('2d').getImageData(0,0,w,h).data;
+    const delay_cs=Math.round(delay/10);
+    v[off++]=0x21;v[off++]=0xf9;v[off++]=0x04;v[off++]=0x04;
+    v[off++]=delay_cs&0xff;v[off++]=(delay_cs>>8)&0xff;
+    v[off++]=0x00;v[off++]=0x00;
+    v[off++]=0x2c;v[off++]=0x00;v[off++]=0x00;v[off++]=0x00;v[off++]=0x00;
+    v[off++]=w&0xff;v[off++]=(w>>8)&0xff;v[off++]=h&0xff;v[off++]=(h>>8)&0xff;v[off++]=0x00;v[off++]=0x08;
+    for(let j=0;j<d.length;j+=4){
+      const pix=(j/4)*3;
+      v[off++]=d[j];v[off++]=d[j+1];v[off++]=d[j+2];
+    }
+    v[off++]=0x00;
+  }
+  v[off++]=0x3b;
+  return buf.slice(0,off);
+}
+
+function showResult(name,url){
+  const r=document.getElementById('rbx');
+  document.getElementById('dl').href=url;document.getElementById('dl').download=name;
+  r.classList.add('act');
+}
+
+const I18N={
+  zh:{hero_tag:'完全免费 · 无需注册 · 隐私安全',hero_title:'免费在线图片工具箱',hero_desc:'压缩、调整大小、格式转换、裁剪、加水印<br>所有操作在浏览器完成，文件永不离开你的设备',cat_main:'图片处理',compress_title:'图片压缩',compress_desc:'压缩 JPG/PNG/WebP 图片体积',resize_title:'调整大小',resize_desc:'修改图片尺寸和分辨率',convert_title:'格式转换',convert_desc:'JPG/PNG/WebP/GIF 互转',crop_title:'裁剪图片',crop_desc:'自定义裁剪图片区域',watermark_title:'添加水印',watermark_desc:'添加文字或图片水印',rotate_title:'旋转/翻转',rotate_desc:'旋转或水平/垂直翻转',brightness_title:'调整亮度',brightness_desc:'调整图片亮度、对比度',gif_title:'GIF 制作',gif_desc:'多张图片合成为 GIF'},
+  en:{hero_tag:'100% Free · No Registration · Privacy Safe',hero_title:'Free Online Image Toolkit',hero_desc:'Compress, resize, convert, crop, watermark<br>All processing in browser, files never leave your device',cat_main:'Image Tools',compress_title:'Compress Images',compress_desc:'Compress JPG/PNG/WebP image size',resize_title:'Resize Images',resize_desc:'Change image dimensions',convert_title:'Convert Format',convert_desc:'Convert between JPG/PNG/WebP/GIF',crop_title:'Crop Image',crop_desc:'Custom crop area',watermark_title:'Add Watermark',watermark_desc:'Add text or image watermark',rotate_title:'Rotate/Flip',rotate_desc:'Rotate or flip horizontally/vertically',brightness_title:'Adjust Brightness',brightness_desc:'Adjust brightness and contrast',gif_title:'Make GIF',gif_desc:'Combine images into GIF'}
+};
+let currentLang='zh';
+function toggleLang(){currentLang=currentLang==='zh'?'en':'zh';applyLang();localStorage.setItem('imgzone_lang',currentLang);document.getElementById('langBtn').textContent=currentLang==='zh'?'🌐 EN':'🌐 中';}
+function applyLang(){const t=I18N[currentLang];document.querySelectorAll('[data-i18n]').forEach(el=>{const key=el.getAttribute('data-i18n');if(t[key])el.textContent=t[key];});}
+(function initLang(){const saved=localStorage.getItem('imgzone_lang');if(saved==='en'||saved==='zh')currentLang=saved;document.getElementById('langBtn').textContent=currentLang==='zh'?'🌐 EN':'🌐 中';applyLang();})();
+</script>
+</body>
+</html>
