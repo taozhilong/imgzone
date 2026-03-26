@@ -8,9 +8,11 @@
   <meta name="keywords" content="图片压缩,图片调整大小,图片格式转换,图片裁剪,水印,免费在线工具">
   <meta name="robots" content="index, follow">
   <meta property="og:title" content="ImgZone - 免费在线图片工具箱">
-  <meta property="og:description" content="完全免费的在线图片工具，无需注册，文件永不离开你的设备">
+  <meta property="og:description" content="完全免费的在线图片工具，无需注册，文件永不离开您的设备">
   <meta property="og:type" content="website">
   <link rel="canonical" href="https://taozhilong.github.io/imgzone/">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%238b5cf6'/%3E%3Crect x='6' y='8' width='20' height='16' rx='2' fill='white'/%3E%3Ccircle cx='12' cy='14' r='3' fill='%238b5cf6'/%3E%3Cpath d='M8 22 L14 18 L18 22 L24 16' stroke='%238b5cf6' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%238b5cf6'/%3E%3Crect x='6' y='8' width='20' height='16' rx='2' fill='white'/%3E%3Ccircle cx='12' cy='14' r='3' fill='%238b5cf6'/%3E%3Cpath d='M8 22 L14 18 L18 22 L24 16' stroke='%238b5cf6' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
     :root{--p:#8b5cf6;--pd:#7c3aed;--bg:#f5f3ff;--c:#fff;--t:#1e1b4b;--tl:#6b7280;--b:#e5e7eb;--r:12px}
@@ -63,7 +65,7 @@
     .or{display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap}
     .or:last-child{margin-bottom:0}
     .or label{font-size:13px;cursor:pointer}
-    .or input[type=text],.or input[type=number],.or select{ padding:6px 10px;border:1px solid var(--b);border-radius:8px;font-size:13px;background:var(--bg)}
+    .or input[type=text],.or input[type=number],.or select{padding:6px 10px;border:1px solid var(--b);border-radius:8px;font-size:13px;background:var(--bg)}
     input.wid{width:100%}
     .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 22px;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;border:none;transition:all .2s;width:100%;margin-bottom:10px}
     .btn-p{background:var(--p);color:#fff}
@@ -98,7 +100,7 @@
   <div class="hero">
     <div class="tag" data-i18n="hero_tag">完全免费 · 无需注册 · 隐私安全</div>
     <h1 data-i18n="hero_title">免费在线图片工具箱</h1>
-    <p data-i18n="hero_desc">压缩、调整大小、格式转换、裁剪、加水印<br>所有操作在浏览器完成，文件永不离开你的设备</p>
+    <p data-i18n="hero_desc">压缩、调整大小、格式转换、裁剪、加水印<br>所有操作在浏览器完成，文件永不离开您的设备</p>
   </div>
   <div class="ts">
     <div class="cat">
@@ -119,47 +121,47 @@
 
 <div id="tv">
   <a class="bk" onclick="showHome();return false">← 返回</a>
-  <div class="th"><h2 id="tt">工具</h2><p id="td">描述</p></div>
+  <div class="th"><h2 id="tt" data-i18n="tool_title">工具</h2><p id="td" data-i18n="tool_desc">描述</p></div>
   <div class="dz" id="dz" onclick="document.getElementById('fi').click()">
     <div class="dzi" id="dzi">📁</div>
-    <h3 id="dzt">点击或拖拽文件到这里</h3>
-    <p id="dzh">支持 JPG/PNG/WebP/GIF</p>
+    <h3 id="dzt" data-i18n="drop_title">点击或拖拽文件到这里</h3>
+    <p id="dzh" data-i18n="drop_hint">支持 JPG/PNG/WebP/GIF</p>
     <input type="file" id="fi" accept="image/*">
   </div>
   <div class="fl" id="fl"></div>
   <div class="op" id="op"></div>
   <div class="pb" id="pb"><div class="pf" id="pf"></div></div>
-  <div class="rbx" id="rbx"><h3>✅ 完成</h3><a id="dl" href="#" download>⬇️ 下载</a></div>
-  <button class="btn btn-p" id="pbBtn" onclick="processTool()" disabled>开始处理</button>
-  <button class="btn btn-s" id="clBtn" onclick="clearFiles()" style="display:none">清空</button>
+  <div class="rbx" id="rbx"><h3 data-i18n="done">✅ 完成</h3><a id="dl" href="#" download>⬇️ 下载</a></div>
+  <button class="btn btn-p" id="pbBtn" onclick="processTool()" disabled data-i18n="btn_process">开始处理</button>
+  <button class="btn btn-s" id="clBtn" onclick="clearFiles()" style="display:none" data-i18n="btn_clear">清空</button>
 </div>
 
 <footer><p>© 2026 ImgZone · <a href="https://taozhilong.github.io/pdfzone/">PDF工具</a> · <a href="https://taozhilong.github.io/codezone/">开发工具</a></p></footer>
 
 <script>
-const T={
-  compress:{title:'图片压缩',desc:'压缩图片体积',hint:'选择图片',icon:'🗜️'},
-  resize:{title:'调整大小',desc:'修改尺寸',hint:'选择图片',icon:'📐'},
-  convert:{title:'格式转换',desc:'转换图片格式',hint:'选择图片',icon:'🔄'},
-  crop:{title:'裁剪图片',desc:'自定义裁剪',hint:'选择图片',icon:'✂️'},
-  watermark:{title:'添加水印',desc:'添加水印',hint:'选择图片',icon:'💧'},
-  rotate:{title:'旋转/翻转',desc:'旋转或翻转',hint:'选择图片',icon:'🔄'},
-  brightness:{title:'调整亮度',desc:'调整亮度对比度',hint:'选择图片',icon:'☀️'},
-  gif:{title:'GIF 制作',desc:'合成为 GIF',hint:'选择多张图片',icon:'🎞️'}
-};
-
 let ct=null,files=[],canvas=document.createElement('canvas');
 
-function showHome(){document.getElementById('home-view').style.display='block';document.getElementById('tv').classList.remove('act');files=[];}
+const T={
+  compress:{title:{zh:'图片压缩',en:'Compress Images'},desc:{zh:'压缩图片体积',en:'Compress image size'},hint:{zh:'选择图片',en:'Select images'},icon:'🗜️'},
+  resize:{title:{zh:'调整大小',en:'Resize Images'},desc:{zh:'修改尺寸',en:'Change dimensions'},hint:{zh:'选择图片',en:'Select images'},icon:'📐'},
+  convert:{title:{zh:'格式转换',en:'Convert Format'},desc:{zh:'转换图片格式',en:'Convert image format'},hint:{zh:'选择图片',en:'Select images'},icon:'🔄'},
+  crop:{title:{zh:'裁剪图片',en:'Crop Image'},desc:{zh:'自定义裁剪',en:'Custom crop'},hint:{zh:'选择图片',en:'Select images'},icon:'✂️'},
+  watermark:{title:{zh:'添加水印',en:'Add Watermark'},desc:{zh:'添加水印',en:'Add watermark'},hint:{zh:'选择图片',en:'Select images'},icon:'💧'},
+  rotate:{title:{zh:'旋转/翻转',en:'Rotate/Flip'},desc:{zh:'旋转或翻转',en:'Rotate or flip'},hint:{zh:'选择图片',en:'Select images'},icon:'🔄'},
+  brightness:{title:{zh:'调整亮度',en:'Adjust Brightness'},desc:{zh:'调整亮度对比度',en:'Adjust brightness'},hint:{zh:'选择图片',en:'Select images'},icon:'☀️'},
+  gif:{title:{zh:'GIF 制作',en:'Make GIF'},desc:{zh:'合成为 GIF',en:'Combine into GIF'},hint:{zh:'选择多张图片',en:'Select multiple images'},icon:'🎞️'}
+};
+
+function showHome(){document.getElementById('home-view').style.display='block';document.getElementById('tv').classList.remove('act');files=[];ct=null;}
 function openTool(id){
   ct=id;const t=T[id];
   document.getElementById('home-view').style.display='none';
   document.getElementById('tv').classList.add('act');
-  document.getElementById('tt').textContent=t.title;
-  document.getElementById('td').textContent=t.desc;
+  document.getElementById('tt').textContent=t.title.zh;
+  document.getElementById('td').textContent=t.desc.zh;
   document.getElementById('dzi').textContent=t.icon;
-  document.getElementById('dzt').textContent=t.title+' - 上传文件';
-  document.getElementById('dzh').textContent=t.hint;
+  document.getElementById('dzt').textContent=t.title.zh+' - '+t.hint.zh;
+  document.getElementById('dzh').textContent=t.hint.zh;
   const inp=document.getElementById('fi');
   inp.accept='image/*';
   inp.multiple=id==='gif'||id==='watermark';
@@ -240,7 +242,7 @@ function resetProgress(){document.getElementById('pb').classList.remove('act');d
 async function processTool(){
   hideResult();
   const btn=document.getElementById('pbBtn');
-  btn.disabled=true;btn.textContent='处理中...';
+  btn.disabled=true;btn.textContent=currentLang==='zh'?'处理中...':'Processing...';
   setProgress(10);
   try{
     if(ct==='compress'){
@@ -276,8 +278,8 @@ async function processTool(){
       showResult('animation.gif',URL.createObjectURL(new Blob([gif],{type:'image/gif'})));
     }
     setProgress(100);
-  }catch(e){alert('错误: '+e.message);}
-  finally{btn.disabled=false;btn.textContent='开始处理';resetProgress();}
+  }catch(e){alert(currentLang==='zh'?'错误: '+e.message:'Error: '+e.message);}
+  finally{btn.disabled=false;btn.textContent=currentLang==='zh'?'开始处理':'Start';resetProgress();}
 }
 
 function loadImg(file){return new Promise((r,e)=>{const i=new Image();i.onload=()=>r(i);i.onerror=e;i.src=URL.createObjectURL(file);});}
@@ -317,13 +319,15 @@ function showResult(name,url){
   r.classList.add('act');
 }
 
+function clearFiles(){files=[];updateFileList();document.getElementById('clBtn').style.display='none';document.getElementById('pbBtn').disabled=true;}
+
 const I18N={
-  zh:{hero_tag:'完全免费 · 无需注册 · 隐私安全',hero_title:'免费在线图片工具箱',hero_desc:'压缩、调整大小、格式转换、裁剪、加水印<br>所有操作在浏览器完成，文件永不离开你的设备',cat_main:'图片处理',compress_title:'图片压缩',compress_desc:'压缩 JPG/PNG/WebP 图片体积',resize_title:'调整大小',resize_desc:'修改图片尺寸和分辨率',convert_title:'格式转换',convert_desc:'JPG/PNG/WebP/GIF 互转',crop_title:'裁剪图片',crop_desc:'自定义裁剪图片区域',watermark_title:'添加水印',watermark_desc:'添加文字或图片水印',rotate_title:'旋转/翻转',rotate_desc:'旋转或水平/垂直翻转',brightness_title:'调整亮度',brightness_desc:'调整图片亮度、对比度',gif_title:'GIF 制作',gif_desc:'多张图片合成为 GIF'},
-  en:{hero_tag:'100% Free · No Registration · Privacy Safe',hero_title:'Free Online Image Toolkit',hero_desc:'Compress, resize, convert, crop, watermark<br>All processing in browser, files never leave your device',cat_main:'Image Tools',compress_title:'Compress Images',compress_desc:'Compress JPG/PNG/WebP image size',resize_title:'Resize Images',resize_desc:'Change image dimensions',convert_title:'Convert Format',convert_desc:'Convert between JPG/PNG/WebP/GIF',crop_title:'Crop Image',crop_desc:'Custom crop area',watermark_title:'Add Watermark',watermark_desc:'Add text or image watermark',rotate_title:'Rotate/Flip',rotate_desc:'Rotate or flip horizontally/vertically',brightness_title:'Adjust Brightness',brightness_desc:'Adjust brightness and contrast',gif_title:'Make GIF',gif_desc:'Combine images into GIF'}
+  zh:{hero_tag:'完全免费 · 无需注册 · 隐私安全',hero_title:'免费在线图片工具箱',hero_desc:'压缩、调整大小、格式转换、裁剪、加水印<br>所有操作在浏览器完成，文件永不离开您的设备',cat_main:'图片处理',compress_title:'图片压缩',compress_desc:'压缩 JPG/PNG/WebP 图片体积',resize_title:'调整大小',resize_desc:'修改图片尺寸和分辨率',convert_title:'格式转换',convert_desc:'JPG/PNG/WebP/GIF 互转',crop_title:'裁剪图片',crop_desc:'自定义裁剪图片区域',watermark_title:'添加水印',watermark_desc:'添加文字或图片水印',rotate_title:'旋转/翻转',rotate_desc:'旋转或水平/垂直翻转',brightness_title:'调整亮度',brightness_desc:'调整图片亮度、对比度',gif_title:'GIF 制作',gif_desc:'多张图片合成为 GIF',tool_title:'工具',tool_desc:'描述',drop_title:'点击或拖拽文件到这里',drop_hint:'支持 JPG/PNG/WebP/GIF',done:'✅ 完成',btn_process:'开始处理',btn_clear:'清空'},
+  en:{hero_tag:'100% Free · No Registration · Privacy Safe',hero_title:'Free Online Image Toolkit',hero_desc:'Compress, resize, convert, crop, watermark<br>All processing in browser, files never leave your device',cat_main:'Image Tools',compress_title:'Compress Images',compress_desc:'Compress JPG/PNG/WebP image size',resize_title:'Resize Images',resize_desc:'Change image dimensions',convert_title:'Convert Format',convert_desc:'Convert between JPG/PNG/WebP/GIF',crop_title:'Crop Image',crop_desc:'Custom crop area',watermark_title:'Add Watermark',watermark_desc:'Add text or image watermark',rotate_title:'Rotate/Flip',rotate_desc:'Rotate or flip horizontally/vertically',brightness_title:'Adjust Brightness',brightness_desc:'Adjust brightness and contrast',gif_title:'Make GIF',gif_desc:'Combine images into GIF',tool_title:'Tool',tool_desc:'Description',drop_title:'Click or drag files here',drop_hint:'Supports JPG/PNG/WebP/GIF',done:'✅ Done',btn_process:'Start',btn_clear:'Clear'}
 };
 let currentLang='zh';
 function toggleLang(){currentLang=currentLang==='zh'?'en':'zh';applyLang();localStorage.setItem('imgzone_lang',currentLang);document.getElementById('langBtn').textContent=currentLang==='zh'?'🌐 EN':'🌐 中';}
-function applyLang(){const t=I18N[currentLang];document.querySelectorAll('[data-i18n]').forEach(el=>{const key=el.getAttribute('data-i18n');if(t[key])el.textContent=t[key];});}
+function applyLang(){const t=I18N[currentLang];document.querySelectorAll('[data-i18n]').forEach(el=>{const key=el.getAttribute('data-i18n');if(t[key])el.textContent=t[key];});if(ct&&T[ct]){document.getElementById('tt').textContent=T[ct].title[currentLang];document.getElementById('td').textContent=T[ct].desc[currentLang];document.getElementById('dzi').textContent=T[ct].icon;document.getElementById('dzt').textContent=T[ct].title[currentLang]+' - '+T[ct].hint[currentLang];document.getElementById('dzh').textContent=T[ct].hint[currentLang];}}
 (function initLang(){const saved=localStorage.getItem('imgzone_lang');if(saved==='en'||saved==='zh')currentLang=saved;document.getElementById('langBtn').textContent=currentLang==='zh'?'🌐 EN':'🌐 中';applyLang();})();
 </script>
 </body>
