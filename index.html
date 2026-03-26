@@ -165,7 +165,7 @@ function openTool(id){
   const inp=document.getElementById('fi');
   inp.accept='image/*';
   inp.multiple=id==='gif'||id==='watermark';
-  files=[];updateFileList();buildOptions();hideResult();
+  files=[];updateFileList();buildOptions();hideResult();applyLang();
   document.getElementById('pbBtn').textContent=I18N[currentLang].btn_start;
   document.getElementById('clBtn').textContent=I18N[currentLang].btn_clear;
 }
