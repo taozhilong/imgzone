@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
@@ -120,7 +120,7 @@
 </div>
 
 <div id="tv">
-  <a class="bk" onclick="showHome();return false">← 返回</a>
+  <a class="bk" onclick="showHome();return false" data-i18n="back_to_tools">← 返回</a>
   <div class="th"><h2 id="tt" data-i18n="tool_title">工具</h2><p id="td" data-i18n="tool_desc">描述</p></div>
   <div class="dz" id="dz" onclick="document.getElementById('fi').click()">
     <div class="dzi" id="dzi">📁</div>
@@ -131,7 +131,7 @@
   <div class="fl" id="fl"></div>
   <div class="op" id="op"></div>
   <div class="pb" id="pb"><div class="pf" id="pf"></div></div>
-  <div class="rbx" id="rbx"><h3 data-i18n="done">✅ 完成</h3><a id="dl" href="#" download>⬇️ 下载</a></div>
+  <div class="rbx" id="rbx"><h3 data-i18n="done">✅ 完成</h3><a id="dl" href="#" download data-i18n="dl_text">⬇️ 下载</a></div>
   <button class="btn btn-p" id="pbBtn" onclick="processTool()" disabled data-i18n="btn_process">开始处理</button>
   <button class="btn btn-s" id="clBtn" onclick="clearFiles()" style="display:none" data-i18n="btn_clear">清空</button>
 </div>
@@ -166,8 +166,8 @@ function openTool(id){
   inp.accept='image/*';
   inp.multiple=id==='gif'||id==='watermark';
   files=[];updateFileList();buildOptions();hideResult();
-  document.getElementById('pbBtn').textContent=currentLang==='zh'?'开始处理':'Start';
-  document.getElementById('clBtn').textContent=currentLang==='zh'?'清空':'Clear';
+  document.getElementById('pbBtn').textContent=I18N[currentLang].btn_start;
+  document.getElementById('clBtn').textContent=I18N[currentLang].btn_clear;
 }
 
 function buildOptions(){
@@ -244,7 +244,7 @@ function resetProgress(){document.getElementById('pb').classList.remove('act');d
 async function processTool(){
   hideResult();
   const btn=document.getElementById('pbBtn');
-  btn.disabled=true;btn.textContent=currentLang==='zh'?'处理中...':'Processing...';
+  btn.disabled=true;btn.textContent=I18N[currentLang].processing;
   setProgress(10);
   try{
     if(ct==='compress'){
@@ -281,7 +281,7 @@ async function processTool(){
     }
     setProgress(100);
   }catch(e){alert(currentLang==='zh'?'错误: '+e.message:'Error: '+e.message);}
-  finally{btn.disabled=false;btn.textContent=currentLang==='zh'?'开始处理':'Start';resetProgress();}
+  finally{btn.disabled=false;btn.textContent=I18N[currentLang].btn_start;resetProgress();}
 }
 
 function loadImg(file){return new Promise((r,e)=>{const i=new Image();i.onload=()=>r(i);i.onerror=e;i.src=URL.createObjectURL(file);});}
@@ -340,8 +340,8 @@ function applyLang(){
     document.getElementById('dzi').textContent=T[ct].icon;
     document.getElementById('dzt').textContent=T[ct].title[currentLang]+' - '+T[ct].hint[currentLang];
     document.getElementById('dzh').textContent=T[ct].hint[currentLang];
-    document.getElementById('pbBtn').textContent=currentLang==='zh'?'开始处理':'Start';
-    document.getElementById('clBtn').textContent=currentLang==='zh'?'清空':'Clear';
+    document.getElementById('pbBtn').textContent=I18N[currentLang].btn_start;
+    document.getElementById('clBtn').textContent=I18N[currentLang].btn_clear;
     buildOptions();
   }
 }

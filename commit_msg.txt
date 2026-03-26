@@ -1,7 +1,0 @@
-fix bilingual toggle: tool detail view now updates on language switch
-
-- openTool() uses currentLang for title/desc/hint
-- buildOptions() uses data-i18n/data-i18n-opt/data-i18n-placeholder for labels/placeholders
-- applyLang() handles placeholder/opt attrs, re-renders buildOptions on toggle
-- openTool() and applyLang() both set pbBtn/clBtn text
-- I18N expanded with all option label/placeholder keys
