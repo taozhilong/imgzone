@@ -157,55 +157,57 @@ function openTool(id){
   ct=id;const t=T[id];
   document.getElementById('home-view').style.display='none';
   document.getElementById('tv').classList.add('act');
-  document.getElementById('tt').textContent=t.title.zh;
-  document.getElementById('td').textContent=t.desc.zh;
+  document.getElementById('tt').textContent=t.title[currentLang];
+  document.getElementById('td').textContent=t.desc[currentLang];
   document.getElementById('dzi').textContent=t.icon;
-  document.getElementById('dzt').textContent=t.title.zh+' - '+t.hint.zh;
-  document.getElementById('dzh').textContent=t.hint.zh;
+  document.getElementById('dzt').textContent=t.title[currentLang]+' - '+t.hint[currentLang];
+  document.getElementById('dzh').textContent=t.hint[currentLang];
   const inp=document.getElementById('fi');
   inp.accept='image/*';
   inp.multiple=id==='gif'||id==='watermark';
   files=[];updateFileList();buildOptions();hideResult();
+  document.getElementById('pbBtn').textContent=currentLang==='zh'?'开始处理':'Start';
+  document.getElementById('clBtn').textContent=currentLang==='zh'?'清空':'Clear';
 }
 
 function buildOptions(){
   const p=document.getElementById('op');let h='';
   switch(ct){
     case 'compress':
-      h=`<h4>压缩质量</h4>
+      h=`<h4 data-i18n="imgcomp_quality">压缩质量</h4>
         <div class="or"><input type="range" id="q" min="10" max="100" value="80" style="width:70%" oninput="document.getElementById('ql').textContent=this.value+'%'"><span id="ql" style="font-size:13px">80%</span></div>
-        <div class="or"><select id="fmt" class="wid"><option value="jpeg">JPG（体积小）</option><option value="png">PNG（质量高）</option><option value="webp">WebP（推荐）</option></select></div>`;
+        <div class="or"><select id="fmt" class="wid"><option value="jpeg" data-i18n-opt="imgcomp_jpg_small">JPG（体积小）</option><option value="png" data-i18n-opt="imgcomp_png_quality">PNG（质量高）</option><option value="webp" data-i18n-opt="imgcomp_webp_reco">WebP（推荐）</option></select></div>`;
       break;
     case 'resize':
-      h=`<h4>新尺寸</h4>
-        <div class="or"><label>宽度：</label><input type="number" id="nw" placeholder="像素" style="width:70px"><span style="color:var(--tl);font-size:13px">px</span></div>
-        <div class="or"><label>高度：</label><input type="number" id="nh" placeholder="自动" style="width:70px"><span style="color:var(--tl);font-size:13px">px</span></div>
-        <div class="or"><label><input type="checkbox" id="kr" checked>保持宽高比</label></div>`;
+      h=`<h4 data-i18n="imgresize_newsize">新尺寸</h4>
+        <div class="or"><label data-i18n="imgresize_width">宽度：</label><input type="number" id="nw" data-i18n-placeholder="imgresize_w_ph" placeholder="像素" style="width:70px"><span style="color:var(--tl);font-size:13px">px</span></div>
+        <div class="or"><label data-i18n="imgresize_height">高度：</label><input type="number" id="nh" data-i18n-placeholder="imgresize_h_ph" placeholder="自动" style="width:70px"><span style="color:var(--tl);font-size:13px">px</span></div>
+        <div class="or"><label><input type="checkbox" id="kr" checked data-i18n-opt="imgresize_keep_ratio">保持宽高比</label></div>`;
       break;
     case 'convert':
-      h=`<h4>输出格式</h4><div class="or"><select id="cfmt" class="wid"><option value="jpeg">JPG</option><option value="png">PNG</option><option value="webp">WebP</option><option value="gif">GIF</option></select></div>`;
+      h=`<h4 data-i18n="imgconv_output">输出格式</h4><div class="or"><select id="cfmt" class="wid"><option value="jpeg">JPG</option><option value="png">PNG</option><option value="webp">WebP</option><option value="gif">GIF</option></select></div>`;
       break;
     case 'crop':
-      h=`<h4>裁剪区域</h4>
+      h=`<h4 data-i18n="imgcrop_area">裁剪区域</h4>
         <div class="or"><label>X：</label><input type="number" id="cx" value="0" style="width:60px"><label style="margin-left:10px">Y：</label><input type="number" id="cy" value="0" style="width:60px"></div>
-        <div class="or"><label>宽：</label><input type="number" id="cw" placeholder="全宽" style="width:60px"><label style="margin-left:10px">高：</label><input type="number" id="ch" placeholder="全高" style="width:60px"></div>`;
+        <div class="or"><label data-i18n="imgcrop_w">宽：</label><input type="number" id="cw" data-i18n-placeholder="imgcrop_w_ph" placeholder="全宽" style="width:60px"><label style="margin-left:10px" data-i18n="imgcrop_h">高：</label><input type="number" id="ch" data-i18n-placeholder="imgcrop_h_ph" placeholder="全高" style="width:60px"></div>`;
       break;
     case 'watermark':
-      h=`<h4>水印设置</h4>
-        <div class="or"><input type="text" id="wtext" class="wid" placeholder="水印文字，如 © 2026"></div>
-        <div class="or"><label>大小：</label><input type="number" id="wsize" value="24" style="width:50px"><span style="font-size:13px">px</span></div>
-        <div class="or"><label>透明度：</label><input type="range" id="walpha" min="10" max="100" value="50" style="width:70%" oninput="document.getElementById('walphal').textContent=this.value+'%'"><span id="walphal" style="font-size:13px">50%</span></div>
-        <div class="or"><label><input type="checkbox" id="wpos" checked>右下角</label></div>`;
+      h=`<h4 data-i18n="imgwm_settings">水印设置</h4>
+        <div class="or"><input type="text" id="wtext" class="wid" data-i18n-placeholder="imgwm_text_ph" placeholder="水印文字，如 © 2026"></div>
+        <div class="or"><label data-i18n="imgwm_size">大小：</label><input type="number" id="wsize" value="24" style="width:50px"><span style="font-size:13px">px</span></div>
+        <div class="or"><label data-i18n="imgwm_alpha">透明度：</label><input type="range" id="walpha" min="10" max="100" value="50" style="width:70%" oninput="document.getElementById('walphal').textContent=this.value+'%'"><span id="walphal" style="font-size:13px">50%</span></div>
+        <div class="or"><label><input type="checkbox" id="wpos" checked data-i18n-opt="imgwm_bottom_right">右下角</label></div>`;
       break;
     case 'rotate':
-      h=`<h4>旋转/翻转</h4>
-        <div class="or"><select id="rot" class="wid"><option value="0">不旋转</option><option value="90">90° 顺时针</option><option value="180">180°</option><option value="270">270° 逆时针</option></select></div>
-        <div class="or"><label><input type="checkbox" id="fh">水平翻转</label><label style="margin-left:20px"><input type="checkbox" id="fv">垂直翻转</label></div>`;
+      h=`<h4 data-i18n="imgrot_title">旋转/翻转</h4>
+        <div class="or"><select id="rot" class="wid"><option value="0" data-i18n-opt="imgrot_none">不旋转</option><option value="90" data-i18n-opt="imgrot_90">90° 顺时针</option><option value="180">180°</option><option value="270" data-i18n-opt="imgrot_270">270° 逆时针</option></select></div>
+        <div class="or"><label><input type="checkbox" id="fh" data-i18n-opt="imgrot_flip_h">水平翻转</label><label style="margin-left:20px"><input type="checkbox" id="fv" data-i18n-opt="imgrot_flip_v">垂直翻转</label></div>`;
       break;
     case 'brightness':
-      h=`<h4>调整</h4>
-        <div class="or"><label>亮度：</label><input type="range" id="br" min="-100" max="100" value="0" style="width:60%" oninput="document.getElementById('brl').textContent=this.value"><span id="brl" style="font-size:13px;width:20px">0</span></div>
-        <div class="or"><label>对比度：</label><input type="range" id="con" min="-100" max="100" value="0" style="width:60%" oninput="document.getElementById('conl').textContent=this.value"><span id="conl" style="font-size:13px;width:20px">0</span></div>`;
+      h=`<h4 data-i18n="imgbright_title">调整</h4>
+        <div class="or"><label data-i18n="imgbright_brightness">亮度：</label><input type="range" id="br" min="-100" max="100" value="0" style="width:60%" oninput="document.getElementById('brl').textContent=this.value"><span id="brl" style="font-size:13px;width:20px">0</span></div>
+        <div class="or"><label data-i18n="imgbright_contrast">对比度：</label><input type="range" id="con" min="-100" max="100" value="0" style="width:60%" oninput="document.getElementById('conl').textContent=this.value"><span id="conl" style="font-size:13px;width:20px">0</span></div>`;
       break;
   }
   p.innerHTML=h;
@@ -322,12 +324,27 @@ function showResult(name,url){
 function clearFiles(){files=[];updateFileList();document.getElementById('clBtn').style.display='none';document.getElementById('pbBtn').disabled=true;}
 
 const I18N={
-  zh:{hero_tag:'完全免费 · 无需注册 · 隐私安全',hero_title:'免费在线图片工具箱',hero_desc:'压缩、调整大小、格式转换、裁剪、加水印<br>所有操作在浏览器完成，文件永不离开您的设备',cat_main:'图片处理',compress_title:'图片压缩',compress_desc:'压缩 JPG/PNG/WebP 图片体积',resize_title:'调整大小',resize_desc:'修改图片尺寸和分辨率',convert_title:'格式转换',convert_desc:'JPG/PNG/WebP/GIF 互转',crop_title:'裁剪图片',crop_desc:'自定义裁剪图片区域',watermark_title:'添加水印',watermark_desc:'添加文字或图片水印',rotate_title:'旋转/翻转',rotate_desc:'旋转或水平/垂直翻转',brightness_title:'调整亮度',brightness_desc:'调整图片亮度、对比度',gif_title:'GIF 制作',gif_desc:'多张图片合成为 GIF',tool_title:'工具',tool_desc:'描述',drop_title:'点击或拖拽文件到这里',drop_hint:'支持 JPG/PNG/WebP/GIF',done:'✅ 完成',btn_process:'开始处理',btn_clear:'清空'},
-  en:{hero_tag:'100% Free · No Registration · Privacy Safe',hero_title:'Free Online Image Toolkit',hero_desc:'Compress, resize, convert, crop, watermark<br>All processing in browser, files never leave your device',cat_main:'Image Tools',compress_title:'Compress Images',compress_desc:'Compress JPG/PNG/WebP image size',resize_title:'Resize Images',resize_desc:'Change image dimensions',convert_title:'Convert Format',convert_desc:'Convert between JPG/PNG/WebP/GIF',crop_title:'Crop Image',crop_desc:'Custom crop area',watermark_title:'Add Watermark',watermark_desc:'Add text or image watermark',rotate_title:'Rotate/Flip',rotate_desc:'Rotate or flip horizontally/vertically',brightness_title:'Adjust Brightness',brightness_desc:'Adjust brightness and contrast',gif_title:'Make GIF',gif_desc:'Combine images into GIF',tool_title:'Tool',tool_desc:'Description',drop_title:'Click or drag files here',drop_hint:'Supports JPG/PNG/WebP/GIF',done:'✅ Done',btn_process:'Start',btn_clear:'Clear'}
+  zh:{hero_tag:'完全免费 · 无需注册 · 隐私安全',hero_title:'免费在线图片工具箱',hero_desc:'压缩、调整大小、格式转换、裁剪、加水印<br>所有操作在浏览器完成，文件永不离开您的设备',cat_main:'图片处理',compress_title:'图片压缩',compress_desc:'压缩 JPG/PNG/WebP 图片体积',resize_title:'调整大小',resize_desc:'修改图片尺寸和分辨率',convert_title:'格式转换',convert_desc:'JPG/PNG/WebP/GIF 互转',crop_title:'裁剪图片',crop_desc:'自定义裁剪图片区域',watermark_title:'添加水印',watermark_desc:'添加文字或图片水印',rotate_title:'旋转/翻转',rotate_desc:'旋转或水平/垂直翻转',brightness_title:'调整亮度',brightness_desc:'调整图片亮度、对比度',gif_title:'GIF 制作',gif_desc:'多张图片合成为 GIF',tool_title:'工具',tool_desc:'描述',drop_title:'点击或拖拽文件到这里',drop_hint:'支持 JPG/PNG/WebP/GIF',done:'✅ 完成',btn_process:'开始处理',btn_clear:'清空',imgcomp_quality:'压缩质量',imgcomp_jpg_small:'JPG（体积小）',imgcomp_png_quality:'PNG（质量高）',imgcomp_webp_reco:'WebP（推荐）',imgresize_newsize:'新尺寸',imgresize_width:'宽度：',imgresize_height:'高度：',imgresize_w_ph:'像素',imgresize_h_ph:'自动',imgresize_keep_ratio:'保持宽高比',imgconv_output:'输出格式',imgcrop_area:'裁剪区域',imgcrop_w:'宽：',imgcrop_w_ph:'全宽',imgcrop_h:'高：',imgcrop_h_ph:'全高',imgwm_settings:'水印设置',imgwm_text_ph:'水印文字，如 © 2026',imgwm_size:'大小：',imgwm_alpha:'透明度：',imgwm_bottom_right:'右下角',imgrot_title:'旋转/翻转',imgrot_none:'不旋转',imgrot_90:'90° 顺时针',imgrot_270:'270° 逆时针',imgrot_flip_h:'水平翻转',imgrot_flip_v:'垂直翻转',imgbright_title:'调整',imgbright_brightness:'亮度：',imgbright_contrast:'对比度：'},
+  en:{hero_tag:'100% Free · No Registration · Privacy Safe',hero_title:'Free Online Image Toolkit',hero_desc:'Compress, resize, convert, crop, watermark<br>All processing in browser, files never leave your device',cat_main:'Image Tools',compress_title:'Compress Images',compress_desc:'Compress JPG/PNG/WebP image size',resize_title:'Resize Images',resize_desc:'Change image dimensions',convert_title:'Convert Format',convert_desc:'Convert between JPG/PNG/WebP/GIF',crop_title:'Crop Image',crop_desc:'Custom crop area',watermark_title:'Add Watermark',watermark_desc:'Add text or image watermark',rotate_title:'Rotate/Flip',rotate_desc:'Rotate or flip horizontally/vertically',brightness_title:'Adjust Brightness',brightness_desc:'Adjust brightness and contrast',gif_title:'Make GIF',gif_desc:'Combine images into GIF',tool_title:'Tool',tool_desc:'Description',drop_title:'Click or drag files here',drop_hint:'Supports JPG/PNG/WebP/GIF',done:'✅ Done',btn_process:'Start',btn_clear:'Clear',imgcomp_quality:'Compression Quality',imgcomp_jpg_small:'JPG (smaller)',imgcomp_png_quality:'PNG (better quality)',imgcomp_webp_reco:'WebP (recommended)',imgresize_newsize:'New Size',imgresize_width:'Width:',imgresize_height:'Height:',imgresize_w_ph:'px',imgresize_h_ph:'auto',imgresize_keep_ratio:'Keep aspect ratio',imgconv_output:'Output Format',imgcrop_area:'Crop Area',imgcrop_w:'Width:',imgcrop_w_ph:'full width',imgcrop_h:'Height:',imgcrop_h_ph:'full height',imgwm_settings:'Watermark Settings',imgwm_text_ph:'Watermark text, e.g. © 2026',imgwm_size:'Size:',imgwm_alpha:'Opacity:',imgwm_bottom_right:'Bottom-right',imgrot_title:'Rotate/Flip',imgrot_none:'No rotation',imgrot_90:'90° Clockwise',imgrot_270:'270° Counter-clockwise',imgrot_flip_h:'Flip Horizontal',imgrot_flip_v:'Flip Vertical',imgbright_title:'Adjust',imgbright_brightness:'Brightness:',imgbright_contrast:'Contrast:'}
 };
 let currentLang='zh';
 function toggleLang(){currentLang=currentLang==='zh'?'en':'zh';applyLang();localStorage.setItem('imgzone_lang',currentLang);document.getElementById('langBtn').textContent=currentLang==='zh'?'🌐 EN':'🌐 中';}
-function applyLang(){const t=I18N[currentLang];document.querySelectorAll('[data-i18n]').forEach(el=>{const key=el.getAttribute('data-i18n');if(t[key])el.textContent=t[key];});if(ct&&T[ct]){document.getElementById('tt').textContent=T[ct].title[currentLang];document.getElementById('td').textContent=T[ct].desc[currentLang];document.getElementById('dzi').textContent=T[ct].icon;document.getElementById('dzt').textContent=T[ct].title[currentLang]+' - '+T[ct].hint[currentLang];document.getElementById('dzh').textContent=T[ct].hint[currentLang];}}
+function applyLang(){
+  const t=I18N[currentLang];
+  document.querySelectorAll('[data-i18n]').forEach(el=>{const key=el.getAttribute('data-i18n');if(t[key])el.textContent=t[key];});
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{const key=el.getAttribute('data-i18n-placeholder');if(t[key])el.placeholder=t[key];});
+  document.querySelectorAll('[data-i18n-opt]').forEach(el=>{const key=el.getAttribute('data-i18n-opt');if(t[key])el.textContent=t[key];});
+  if(ct&&T[ct]){
+    document.getElementById('tt').textContent=T[ct].title[currentLang];
+    document.getElementById('td').textContent=T[ct].desc[currentLang];
+    document.getElementById('dzi').textContent=T[ct].icon;
+    document.getElementById('dzt').textContent=T[ct].title[currentLang]+' - '+T[ct].hint[currentLang];
+    document.getElementById('dzh').textContent=T[ct].hint[currentLang];
+    document.getElementById('pbBtn').textContent=currentLang==='zh'?'开始处理':'Start';
+    document.getElementById('clBtn').textContent=currentLang==='zh'?'清空':'Clear';
+    buildOptions();
+  }
+}
 (function initLang(){const saved=localStorage.getItem('imgzone_lang');if(saved==='en'||saved==='zh')currentLang=saved;document.getElementById('langBtn').textContent=currentLang==='zh'?'🌐 EN':'🌐 中';applyLang();})();
 </script>
 </body>
