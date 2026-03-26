@@ -343,6 +343,7 @@ function applyLang(){
     document.getElementById('pbBtn').textContent=I18N[currentLang].btn_start;
     document.getElementById('clBtn').textContent=I18N[currentLang].btn_clear;
     buildOptions();
+    applyLang();
   }
 }
 (function initLang(){const saved=localStorage.getItem('imgzone_lang');if(saved==='en'||saved==='zh')currentLang=saved;document.getElementById('langBtn').textContent=currentLang==='zh'?'🌐 EN':'🌐 中';applyLang();})();
